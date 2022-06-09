@@ -70,8 +70,7 @@ public class CharacterMove : MonoBehaviour
             {
                 continue;
             }
-
-            //Rigidbody component 존재 여부
+ 
             Rigidbody rigidbody = collider.GetComponent<Rigidbody>();
 
             if (rigidbody != null)
@@ -87,7 +86,6 @@ public class CharacterMove : MonoBehaviour
                 continue;
             }
 
-            //Rigidbody component 존재 여부
             Rigidbody rigidbody = collider.GetComponent<Rigidbody>();
 
             if (rigidbody != null)
