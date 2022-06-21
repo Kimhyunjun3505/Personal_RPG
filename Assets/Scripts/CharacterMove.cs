@@ -13,6 +13,8 @@ public class CharacterMove : MonoBehaviour
 
     public float damage = 10f;
 
+    public int coin = 100;
+
     public GameObject[] weapons;
     public bool[] hasWeapons;
 
@@ -54,10 +56,51 @@ public class CharacterMove : MonoBehaviour
     GameObject equipWeapon;
     int equipWeaponIndex = -1;
 
+    public GameObject ShopUI;
+    public int[] itempPrice;
+    private bool useShop;
+
+    public void OpenShop()
+    {
+        useShop = true;
+        ShopUI.SetActive(true);
+    }
+
+    public void OnClickExit()
+    {
+        useShop = false;
+        ShopUI.SetActive(false);
+    }
+
+    public void Buy(int index)
+    {
+        int price = itempPrice[index];
+
+        if (price > coin)
+        {
+            Debug.Log("구매실패");
+            return;
+        }
+        coin -= price;
+        if (index == 0)
+        {
+            hasWeapons[0] = true;
+        }
+        else if(index==1)
+        {
+            hasWeapons[1] = true;
+        }
+        else if (index == 2)
+        {
+            hasWeapons[2] = true;
+        }
+    }
+
+
+
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        //iceStaff = GameObject.Find("Staff_02 (1)").GetComponent<IceStaff>();
         characterController = GetComponent<CharacterController>();
         Lhand.gameObject.SetActive(false);
         Rhand.gameObject.SetActive(false);
@@ -66,13 +109,15 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
-
-        GetInput();
-        Interation();
-        Swap();
-        if (isMove)
-            Move();
-        AnimationUpdate();
+        if (!useShop)
+        {
+            GetInput();
+            Interation();
+            Swap();
+            if (isMove)
+                Move();
+            AnimationUpdate();
+        }
     }
 
 
@@ -82,6 +127,10 @@ public class CharacterMove : MonoBehaviour
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            OpenShop();
+        }
         if(iceStaff.isUse)
         {
             if(Input.GetKeyDown(KeyCode.R))
@@ -150,12 +199,9 @@ public class CharacterMove : MonoBehaviour
     {
         if (iDown && nearobject != null)
         {
-            if (nearobject.tag == "Weapon")
+            if (nearobject.tag == "Coin")
             {
                 Item item = nearobject.GetComponent<Item>();
-                int weaponIndex = item.value;
-                hasWeapons[weaponIndex] = true;
-                Destroy(nearobject);
             }
         }
 
@@ -178,39 +224,6 @@ public class CharacterMove : MonoBehaviour
             StopCoroutine(attackCoroutine);
         }
         attackCoroutine = StartCoroutine(IsAttackFalse());
-
-        Collider[] Rcolliders = Physics.OverlapSphere(posRSkillEffect.position, radius);
-        Collider[] Lcolliders = Physics.OverlapSphere(posLSkillEffect.position, radius);
-
-        foreach (Collider collider in Rcolliders)
-        {
-            if (collider.gameObject.CompareTag("PlayerAtk") == true || collider.gameObject.CompareTag("MonsterAtk") == true)
-            {
-                continue;
-            }
-
-            Rigidbody rigidbody = collider.GetComponent<Rigidbody>();
-
-            if (rigidbody != null)
-            {
-                rigidbody.AddExplosionForce(power, posRSkillEffect.position, radius, flyingSize);
-            }
-        }
-
-        foreach (Collider collider in Lcolliders)
-        {
-            if (collider.gameObject.CompareTag("PlayerAtk") == true || collider.gameObject.CompareTag("MonsterAtk") == true)
-            {
-                continue;
-            }
-
-            Rigidbody rigidbody = collider.GetComponent<Rigidbody>();
-
-            if (rigidbody != null)
-            {
-                rigidbody.AddExplosionForce(power, posLSkillEffect.position, radius, flyingSize);
-            }
-        }
     }
 
     public void IsMoveTrue()
@@ -257,9 +270,9 @@ public class CharacterMove : MonoBehaviour
             labelStyle.fontSize = 50;
             labelStyle.normal.textColor = Color.white;
 
-            GUILayout.Label("MOVE : " + isMove.ToString(), labelStyle);
+            GUILayout.Label("아이템 획득 : E, 사용 : R", labelStyle);
 
-            GUILayout.Label("RUN : " + isRun.ToString(), labelStyle);
+            GUILayout.Label("상점: TAB ", labelStyle);
 
         }
     }
@@ -326,13 +339,13 @@ public class CharacterMove : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Coin")
             nearobject = other.gameObject;
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Weapon")
+        if (other.tag == "Coin")
             nearobject = null;
     }
 }

@@ -23,18 +23,18 @@ public class SpawnMonster : MonoBehaviour
                 break;
             }
 
-            Vector3 vecSpawn = new Vector3(Random.Range(0, rndPos), 1000f, Random.Range(0, rndPos));
+            Vector3 vecSpawn = new Vector3(Random.Range(50, rndPos), 1000f, Random.Range(50, rndPos));
 
             Ray ray = new Ray(vecSpawn, Vector3.down);
 
             RaycastHit raycastHit = new RaycastHit();
-            if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity) == true)
+
+            if (Physics.Raycast(ray, out raycastHit, Mathf.Infinity) == true&&raycastHit.point.y==0)
             {
                 vecSpawn.y = raycastHit.point.y;
             }
 
             GameObject newMonster = Instantiate(monsterSpawner, vecSpawn, Quaternion.identity);
-
             monsters.Add(newMonster);
 
             yield return new WaitForSeconds(5f);

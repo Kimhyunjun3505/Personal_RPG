@@ -1148,7 +1148,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4215789226532830}
   - component: {fileID: 1414049932376783926}
-  - component: {fileID: 4752691265745878144}
   m_Layer: 0
   m_Name: Polygonal Metalon Green
   m_TagString: Untagged
@@ -1204,32 +1203,6 @@ Animation:
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!114 &4752691265745878144
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1783563462218004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b65b17d143fc96e4895ec413d0fb6d90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  skullState: 0
-  spdMove: 1
-  targetCharactor: {fileID: 0}
-  targetTransform: {fileID: 0}
-  posTarget: {x: 0, y: 0, z: 0}
-  IdleAnimClip: {fileID: 0}
-  MoveAnimClip: {fileID: 0}
-  AtkAnimClip: {fileID: 0}
-  DamageAnimClip: {fileID: 0}
-  DieAnimClip: {fileID: 0}
-  hp: 100
-  AtkRange: 1.5
-  effectDamage: {fileID: 0}
-  effectDie: {fileID: 0}
 --- !u!1 &1804318802084684
 GameObject:
   m_ObjectHideFlags: 0

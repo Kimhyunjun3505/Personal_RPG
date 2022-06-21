@@ -325,7 +325,8 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'LeftUpperLeg' not found\n"
     rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
@@ -333,7 +334,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -412,7 +413,242 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Polygonal Metalon(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Polygonal Metalon
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0, y: 0, z: 0.000000016396491}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Rig
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLeg01Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -1.5700321, y: 0.00000006905086, z: 1.3625424}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLeg01Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: 1.5700319, y: 0.00000006905078, z: 1.362543}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLeg02Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -1.8470625, y: 0.00000006905087, z: 0.14333223}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLeg02Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: 1.8470625, y: 0.00000006905077, z: 0.14333278}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigLLeg03Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -1.5492817, y: -0.000000069425035, z: -1.2608864}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRLeg03Platform
+      parentName: Polygonal Metalon(Clone)
+      position: {x: 1.5492821, y: -0.00000006942512, z: -1.260886}
+      rotation: {x: 0.50000006, y: -0.50000006, z: -0.49999997, w: 0.49999997}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigHeadGizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.0000016040344, y: 0.97826356, z: 0.8153755}
+      rotation: {x: -0.7064338, y: -0.030843422, z: 0.7064338, w: 0.03084356}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRibcageGizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.0000015050227, y: 1.0310651, z: 0.42383102}
+      rotation: {x: 0.7071068, y: -0.00000006883941, z: -0.7071067, w: -0.00000006883943}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigPelvisGizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.000000018626597, y: 1.0893475, z: -0.42612815}
+      rotation: {x: -0.6963643, y: 0.122787915, z: 0.6963643, w: -0.12278779}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigTail1Gizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.000000028700263, y: 0.9380584, z: -0.6565877}
+      rotation: {x: -0.2537136, y: -0.6600222, z: 0.25371373, w: 0.6600223}
+      scale: {x: 0.99999994, y: 0.99999994, z: 1}
+    - name: RigTail2Gizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.00000004453484, y: 0.6112693, z: -1.0188407}
+      rotation: {x: -0.27184525, y: -0.6527634, z: 0.2718454, w: 0.6527635}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: RigTail3Gizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.000000052145573, y: 0.4358183, z: -1.1929562}
+      rotation: {x: -0.14529927, y: -0.6920174, z: 0.1452994, w: 0.69201744}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: RigTail4Gizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.00000006114517, y: 0.345374, z: -1.3988408}
+      rotation: {x: -0.07806574, y: -0.70278424, z: 0.07806587, w: 0.7027843}
+      scale: {x: 0.9999998, y: 0.9999998, z: 1}
+    - name: RigTail5Gizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.00000006944698, y: 0.30264908, z: -1.5887823}
+      rotation: {x: -0.06162834, y: -0.70441604, z: 0.06162848, w: 0.7044161}
+      scale: {x: 0.9999999, y: 0.9999999, z: 1}
+    - name: RigJawGizmo
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.0000016086603, y: 0.60145175, z: 0.70955014}
+      rotation: {x: -0.6903455, y: -0.15304577, z: 0.6903456, w: 0.15304591}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigPelvis
+      parentName: Polygonal Metalon(Clone)
+      position: {x: -0.000000018626597, y: 1.0893475, z: -0.42612815}
+      rotation: {x: -0.6963642, y: 0.122787975, z: 0.6963642, w: -0.12278785}
+      scale: {x: 1.0000004, y: 1.0000005, z: 1.0000002}
+    - name: RigSpine
+      parentName: RigPelvis
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: 0.00000007187667, y: 0.0000008584133, z: -0.20725167, w: 0.9782877}
+      scale: {x: 1, y: 1, z: 1}
+    - name: RigRibcage
+      parentName: RigSpine
+      position: {x: -0.851955, y: -0.000000076293944, z: -7.2759575e-14}
+      rotation: {x: 0.0000002489507, y: 0.0000006545236, z: -0.61900455, w: -0.78538746}
+      scale: {x: 1.0000002, y: 1.0000006, z: 1.0000004}
+    - name: RigNeck
+      parentName: RigRibcage
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.000000015455429, y: 0.00000013529076, z: -0.0669729, w: 0.9977548}
+      scale: {x: 1.0000001, y: 1, z: 1}
+    - name: RigHead
+      parentName: RigNeck
+      position: {x: -0.39508873, y: 0.000000076293944, z: 0}
+      rotation: {x: -0.00000002348487, y: 0.00000013860007, z: -0.023387808, w: -0.99972653}
+      scale: {x: 0.99999994, y: 0.9999996, z: 0.9999998}
+    - name: RigJaw
+      parentName: RigHead
+      position: {x: 0.07258148, y: 0.38460112, z: -0.00000007488459}
+      rotation: {x: 6.340349e-11, y: -0.00000007684955, z: -0.17364813, w: 0.9848078}
+      scale: {x: 1, y: 1.0000002, z: 1.0000002}
+    - name: RigRLeg011
+      parentName: RigRibcage
+      position: {x: -0.10979496, y: 0.4980911, z: -0.34511814}
+      rotation: {x: -0.73377556, y: 0.44363514, z: -0.28565207, w: -0.4279769}
+      scale: {x: 1.0000005, y: 1, z: 1.0000001}
+    - name: RigRLeg012
+      parentName: RigRLeg011
+      position: {x: -0.84718525, y: 0, z: -0.000000038146972}
+      rotation: {x: 0.15577273, y: 0.45758706, z: -0.49178392, w: 0.724222}
+      scale: {x: 1.0000002, y: 1.0000007, z: 1.0000007}
+    - name: RigRLeg013
+      parentName: RigRLeg012
+      position: {x: -0.54987794, y: -0.000000076293944, z: -0.000000114440915}
+      rotation: {x: 0.03870801, y: -0.46766677, z: 0.7032222, w: 0.5341048}
+      scale: {x: 0.99999946, y: 1.0000004, z: 1.0000001}
+    - name: RigRLeg021
+      parentName: RigRibcage
+      position: {x: 0.2961422, y: 0.48595864, z: -0.44488674}
+      rotation: {x: -0.54203296, y: 0.5735913, z: -0.42815867, w: -0.44031075}
+      scale: {x: 1.0000002, y: 1, z: 1}
+    - name: RigRLeg022
+      parentName: RigRLeg021
+      position: {x: -0.8178216, y: -0.000000009536743, z: 0}
+      rotation: {x: 0.8228498, y: 0.06765977, z: -0.11574243, w: 0.5522175}
+      scale: {x: 1.0000001, y: 1.0000012, z: 0.99999994}
+    - name: RigRLeg023
+      parentName: RigRLeg022
+      position: {x: -0.4852066, y: 0, z: 0}
+      rotation: {x: -0.22254285, y: -0.21603513, z: 0.89694846, w: 0.3150982}
+      scale: {x: 1.000002, y: 0.9999998, z: 0.99999905}
+    - name: RigLLeg011
+      parentName: RigRibcage
+      position: {x: -0.109795034, y: 0.4980911, z: 0.34511814}
+      rotation: {x: -0.7338195, y: 0.4436464, z: 0.2855541, w: 0.42795515}
+      scale: {x: 1.0000001, y: 1.0000004, z: 1.0000005}
+    - name: RigLLeg012
+      parentName: RigLLeg011
+      position: {x: -0.84718525, y: -0.000000038146972, z: 0}
+      rotation: {x: -0.1557654, y: -0.45765632, z: -0.49184293, w: 0.72413975}
+      scale: {x: 1.0000006, y: 1.0000007, z: 1}
+    - name: RigLLeg013
+      parentName: RigLLeg012
+      position: {x: -0.54987794, y: -0.000000076293944, z: 0}
+      rotation: {x: -0.03838834, y: 0.4677927, z: 0.7031403, w: 0.53412557}
+      scale: {x: 1.0000001, y: 0.99999994, z: 0.9999996}
+    - name: RigLLeg021
+      parentName: RigRibcage
+      position: {x: 0.2961421, y: 0.48595867, z: 0.44488674}
+      rotation: {x: -0.54203403, y: 0.5735928, z: 0.42815712, w: 0.44030893}
+      scale: {x: 1, y: 1.0000002, z: 1.0000001}
+    - name: RigLLeg022
+      parentName: RigLLeg021
+      position: {x: -0.8178215, y: 0, z: 0}
+      rotation: {x: -0.82284313, y: -0.06766209, z: -0.11574314, w: 0.552227}
+      scale: {x: 1.0000001, y: 0.99999934, z: 1.0000005}
+    - name: RigLLeg023
+      parentName: RigLLeg022
+      position: {x: -0.48520675, y: 0.000000076293944, z: 0.000000038146972}
+      rotation: {x: 0.22254285, y: 0.21604481, z: 0.89694303, w: 0.3151072}
+      scale: {x: 0.99999785, y: 1.0000007, z: 1.0000018}
+    - name: RigTail1
+      parentName: RigPelvis
+      position: {x: 0.2683051, y: 0.06334335, z: -0.000000012333512}
+      rotation: {x: -0.02005592, y: -0.003908433, z: -0.8770052, w: 0.48004633}
+      scale: {x: 1.0000005, y: 1.0000002, z: 1.0000004}
+    - name: RigTail2
+      parentName: RigTail1
+      position: {x: -0.48787108, y: 0.000000076293944, z: 3.6379787e-14}
+      rotation: {x: -0.00000003296381, y: -0.00000007876045, z: 0.027617931, w: 0.9996186}
+      scale: {x: 0.99999994, y: 1, z: 0.99999994}
+    - name: RigTail3
+      parentName: RigTail2
+      position: {x: -0.24718273, y: 0, z: -1.4551915e-13}
+      rotation: {x: 0.000000001935561, y: -0.0000000069250348, z: -0.18655118, w: 0.98244524}
+      scale: {x: 0.9999996, y: 0.9999997, z: 1.0000001}
+    - name: RigTail4
+      parentName: RigTail3
+      position: {x: -0.22487465, y: -0.000000076293944, z: 2.910383e-13}
+      rotation: {x: -0.5823856, y: -0.8019136, z: -0.035920434, w: 0.12834112}
+      scale: {x: 1, y: 0.9999996, z: 1.0000002}
+    - name: RigTail5
+      parentName: RigTail4
+      position: {x: -0.1946875, y: 0.000000076293944, z: -1.5734259e-12}
+      rotation: {x: -0.0000000018856106, y: -0.000000064539485, z: -0.023358649, w: 0.99972713}
+      scale: {x: 0.99999976, y: 0.9999997, z: 1}
+    - name: RigRLeg031
+      parentName: RigPelvis
+      position: {x: 0.06065763, y: 0.56919813, z: -0.43555304}
+      rotation: {x: 0.3464585, y: 0.3459972, z: 0.83186495, w: -0.2612532}
+      scale: {x: 1.0000004, y: 1.0000004, z: 1.0000006}
+    - name: RigRLeg032
+      parentName: RigRLeg031
+      position: {x: -0.88606274, y: 0, z: 0.000000076293944}
+      rotation: {x: -0.46214175, y: 0.756079, z: -0.07443916, w: -0.45741487}
+      scale: {x: 1.0000002, y: 0.999998, z: 1.000002}
+    - name: RigRLeg033
+      parentName: RigRLeg032
+      position: {x: -0.4934875, y: 0, z: 0}
+      rotation: {x: 0.2585889, y: -0.08143178, z: -0.8764865, w: 0.3978344}
+      scale: {x: 0.99999994, y: 1.0000011, z: 0.9999998}
+    - name: RigLLeg031
+      parentName: RigPelvis
+      position: {x: 0.060657557, y: 0.5691982, z: 0.43555304}
+      rotation: {x: 0.34645715, y: 0.3459978, z: -0.831865, w: 0.26125383}
+      scale: {x: 1.0000005, y: 1.0000004, z: 1.0000001}
+    - name: RigLLeg032
+      parentName: RigLLeg031
+      position: {x: -0.88606274, y: 0.000000038146972, z: -0.000000076293944}
+      rotation: {x: 0.46214098, y: -0.7560804, z: -0.074444905, w: -0.4574125}
+      scale: {x: 0.9999998, y: 1.0000025, z: 0.99999917}
+    - name: RigLLeg033
+      parentName: RigLLeg032
+      position: {x: -0.49348757, y: -0.000000076293944, z: 0.000000076293944}
+      rotation: {x: -0.25859827, y: 0.081460275, z: -0.8764845, w: 0.39782685}
+      scale: {x: 1.0000001, y: 0.9999997, z: 1.0000013}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -427,9 +663,9 @@ ModelImporter:
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 1
+  animationType: 2
   humanoidOversampling: 1
-  avatarSetup: 0
+  avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 

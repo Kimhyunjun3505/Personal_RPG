@@ -9,6 +9,7 @@ TagManager:
   - Weapon
   - Monster
   - IceAge
+  - Target
   layers:
   - Default
   - TransparentFX
