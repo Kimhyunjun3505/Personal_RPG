@@ -3,11 +3,14 @@ using System.Collections;
 
 public class csDestroyEffect : MonoBehaviour {
 
-	void Update ()
+    private void Start()
     {
-	    if(Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.C))
-        {
-            Destroy(gameObject);
-        }
-	}
+        StartCoroutine(DestroyIceAge());
+    }
+
+    IEnumerator DestroyIceAge()
+    {
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
+    }
 }

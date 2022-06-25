@@ -12,19 +12,24 @@ public class SpiderCtrl : MonoBehaviour
     public bool isChase;
     public bool isDie = false;
     public bool isIce = false;
+    public bool isAtk = false;
+    public GameObject effectDamage = null;
+    public GameObject damagedEffect = null;
+    public GameObject coin = null;
 
+    public Collider col;
 
     Rigidbody rb;
     BoxCollider boxCollider;
     Material mat;
-    CharacterMove player;
+    Player player;
     NavMeshAgent nav;
     Animator animator;
 
     private void Awake()
     {
         target = GameObject.Find("Target_Tree").transform;
-        player = GameObject.Find("Golem").GetComponent<CharacterMove>();
+        player = GameObject.Find("Golem").GetComponent<Player>();
         curHealth = maxHealth;
         rb = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
@@ -43,7 +48,7 @@ public class SpiderCtrl : MonoBehaviour
 
     private void Update()
     {
-        if (isChase&&!isIce)
+        if (isChase && !isIce && transform.position.y <= 1 && !isDie)
         {
             nav.SetDestination(target.position);
             animator.SetBool("IsWalk", true);
@@ -52,14 +57,14 @@ public class SpiderCtrl : MonoBehaviour
 
     private void FreezeVelocity()
     {
-        if(isChase)
+        if (isChase)
         {
             rb.velocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
         else
         {
-            if(!isDie&&!isIce)
+            if (!isDie && !isIce)
                 Invoke("ChaseStart", 3);
         }
     }
@@ -69,9 +74,40 @@ public class SpiderCtrl : MonoBehaviour
         FreezeVelocity();
     }
 
+    public void SetTrueAtk()
+    {
+        Instantiate(effectDamage, col.transform.position, Quaternion.identity);
+        col.gameObject.SetActive(false);
+        target.GetComponent<Health>().health -= 1;
+    }
+
+    public void SetFalseAtk()
+    {
+        animator.SetBool("IsAttack", false);
+        StartCoroutine(colActive());
+    }
+
+    IEnumerator colActive()
+    {
+        yield return new WaitForSeconds(0.2f);
+        col.gameObject.SetActive(true);
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (col.gameObject.activeSelf == true)
+        {
+            if (other.tag == "Target")
+            {
+                animator.SetBool("IsAttack", true);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag=="PlayerAtk")
+
+        if (other.tag=="PlayerAtk")
         {
             isChase = false;
             curHealth -= player.damage;
@@ -97,6 +133,7 @@ public class SpiderCtrl : MonoBehaviour
         reactVec = reactVec.normalized;
         rb.freezeRotation = false;
         yield return new WaitForSeconds(0.1f);
+        Instantiate(damagedEffect, transform.position, Quaternion.identity);
         rb.AddForce(reactVec * 1000, ForceMode.Force);
         yield return new WaitForSeconds(0.5f);
         if (!isIce)
@@ -114,6 +151,7 @@ public class SpiderCtrl : MonoBehaviour
             animator.SetTrigger("DoDie");
             mat.color = Color.green;
             gameObject.layer = 6;
+            Instantiate(coin, transform.position, Quaternion.identity);
             Destroy(gameObject, 1);
         }
     }

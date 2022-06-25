@@ -2,8 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CharacterMove : MonoBehaviour
+public class Player : MonoBehaviour
 {
     public float radius = 5f;
 
@@ -43,8 +44,6 @@ public class CharacterMove : MonoBehaviour
     bool sDown2;
     bool sDown3;
 
-    public GameObject effectDamage = null;
-
     Vector3 CurrentVelocitySpd = Vector3.zero;
     float VelocityChangeSpd = 0.1f;
 
@@ -58,17 +57,26 @@ public class CharacterMove : MonoBehaviour
 
     public GameObject ShopUI;
     public int[] itempPrice;
-    private bool useShop;
+    public bool useShop;
+
+    public Image[] staffImage;
+
+    public Button[] button;
+
+    public Text coinText;
 
     public void OpenShop()
     {
+        coinText.text = string.Format("{0:#,###}", coin);
         useShop = true;
+        Time.timeScale = 0;
         ShopUI.SetActive(true);
     }
 
     public void OnClickExit()
     {
         useShop = false;
+        Time.timeScale = 1;
         ShopUI.SetActive(false);
     }
 
@@ -81,22 +89,46 @@ public class CharacterMove : MonoBehaviour
             Debug.Log("구매실패");
             return;
         }
-        coin -= price;
         if (index == 0)
         {
-            hasWeapons[0] = true;
+            if(hasWeapons[0]==false)
+            {
+                staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                button[index].enabled = false;
+                button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                hasWeapons[0] = true;
+                coin -= price;
+                coinText.text = string.Format("{0:#,###}", coin);
+            }
+            return;
         }
         else if(index==1)
         {
-            hasWeapons[1] = true;
+            if (hasWeapons[1] == false)
+            {
+                staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                button[index].enabled = false;
+                button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                hasWeapons[1] = true;
+                coin -= price;
+                coinText.text = string.Format("{0:#,###}", coin);
+            }
+            return;
         }
         else if (index == 2)
         {
-            hasWeapons[2] = true;
+            if (hasWeapons[2] == false)
+            {
+                staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                button[index].enabled = false;
+                button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                hasWeapons[2] = true;
+                coin -= price;
+                coinText.text = string.Format("{0:#,###}", coin);
+            }
+            return;
         }
     }
-
-
 
     private void Awake()
     {
@@ -109,10 +141,10 @@ public class CharacterMove : MonoBehaviour
 
     private void Update()
     {
+        InputShop();
         if (!useShop)
         {
             GetInput();
-            Interation();
             Swap();
             if (isMove)
                 Move();
@@ -121,16 +153,23 @@ public class CharacterMove : MonoBehaviour
     }
 
 
+    void InputShop()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!useShop)
+                OpenShop();
+            else
+                OnClickExit();
+        }
+    }
+
     void GetInput()
     {
-        iDown = Input.GetButtonDown("Interation");
         sDown1 = Input.GetButtonDown("Swap1");
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            OpenShop();
-        }
+
         if(iceStaff.isUse)
         {
             if(Input.GetKeyDown(KeyCode.R))
@@ -195,17 +234,6 @@ public class CharacterMove : MonoBehaviour
 
     }
 
-    void Interation()
-    {
-        if (iDown && nearobject != null)
-        {
-            if (nearobject.tag == "Coin")
-            {
-                Item item = nearobject.GetComponent<Item>();
-            }
-        }
-
-    }
 
     private IEnumerator IsAttackFalse()
     {
@@ -329,23 +357,4 @@ public class CharacterMove : MonoBehaviour
         return CurrentVelocitySpd.magnitude;
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("MonsterAtk") == true)
-        {
-            Instantiate(effectDamage, other.transform.position, Quaternion.identity);
-        }
-    }
-
-    public void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Coin")
-            nearobject = other.gameObject;
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Coin")
-            nearobject = null;
-    }
 }
