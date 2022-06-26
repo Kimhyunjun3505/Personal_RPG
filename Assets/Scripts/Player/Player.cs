@@ -55,7 +55,8 @@ public class Player : MonoBehaviour
     GameObject equipWeapon;
     int equipWeaponIndex = -1;
 
-    public GameObject ShopUI;
+    public GameObject shopUI;
+    public GameObject failedUI;
     public int[] itempPrice;
     public bool useShop;
 
@@ -70,14 +71,20 @@ public class Player : MonoBehaviour
         coinText.text = string.Format("{0:#,###}", coin);
         useShop = true;
         Time.timeScale = 0;
-        ShopUI.SetActive(true);
+        shopUI.SetActive(true);
     }
 
     public void OnClickExit()
     {
         useShop = false;
         Time.timeScale = 1;
-        ShopUI.SetActive(false);
+        shopUI.SetActive(false);
+        failedUI.SetActive(false);
+    }
+
+    public void OnClickFailedExit()
+    {
+        failedUI.SetActive(false);
     }
 
     public void Buy(int index)
@@ -86,7 +93,7 @@ public class Player : MonoBehaviour
 
         if (price > coin)
         {
-            Debug.Log("구매실패");
+            failedUI.SetActive(true);
             return;
         }
         if (index == 0)
