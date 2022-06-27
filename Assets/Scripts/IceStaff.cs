@@ -8,7 +8,6 @@ public class IceStaff : MonoBehaviour
     public GameObject effectDamage = null;
     Vector3 pos;
     public bool isUse = false;
-
     public CoolTimeUI coolTimeUi;
 
     public Image img_Skill;

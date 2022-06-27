@@ -26,7 +26,13 @@ public class Player : MonoBehaviour
 
     public Transform posRSkillEffect;
     public Transform posLSkillEffect;
+
     public IceStaff iceStaff;
+    public FireStaff fireStaff;
+    public PoisonStaff poisonStaff;
+
+    public SkinnedMeshRenderer skinnedMeshRenderer;
+    public Material changeMeshRenerer;
 
     public float speed = 2f;
     public float runSpeed = 10f;
@@ -67,6 +73,10 @@ public class Player : MonoBehaviour
     public Button[] button;
 
     public Text coinText;
+
+    public bool iceUse = false;
+    public bool fireUse = false;
+    public bool poisonUse = false;
 
     /// <summary>
     /// 상점 열기
@@ -115,6 +125,7 @@ public class Player : MonoBehaviour
         {
             if(hasWeapons[0]==false)
             {
+                fireUse = true;
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 staffImageUI[index].SetActive(true);
                 staffTextUI[index].SetActive(true);
@@ -130,6 +141,7 @@ public class Player : MonoBehaviour
         {
             if (hasWeapons[1] == false)
             {
+                iceUse = true;
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 staffImageUI[index].SetActive(true);
                 staffTextUI[index].SetActive(true);
@@ -145,6 +157,7 @@ public class Player : MonoBehaviour
         {
             if (hasWeapons[2] == false)
             {
+                poisonUse = true;
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 staffImageUI[index].SetActive(true);
                 staffTextUI[index].SetActive(true);
@@ -178,6 +191,11 @@ public class Player : MonoBehaviour
                 Move();
             AnimationUpdate();
         }
+        if(iceUse&&fireUse&&poisonUse)
+        {
+            damage = 30;
+            skinnedMeshRenderer.material = changeMeshRenerer;
+        }
     }
 
     /// <summary>
@@ -203,13 +221,13 @@ public class Player : MonoBehaviour
         sDown2 = Input.GetButtonDown("Swap2");
         sDown3 = Input.GetButtonDown("Swap3");
 
-        if(iceStaff.isUse)
-        {
-            if(Input.GetKeyDown(KeyCode.R))
-            {
-                animator.SetTrigger("Skill");
-            }
-        }
+        //if(iceStaff.isUse)
+        //{
+        //    if(Input.GetKeyDown(KeyCode.R))
+        //    {
+        //        animator.SetTrigger("Skill");
+        //    }
+        //}
         if (Input.GetMouseButtonDown(0)&&!isJumpAttack)
         {
             AttackAnimationStart();

@@ -588,6 +588,10 @@ MonoBehaviour:
   posRSkillEffect: {fileID: 1945529440}
   posLSkillEffect: {fileID: 1067431957}
   iceStaff: {fileID: 236986168}
+  fireStaff: {fileID: 1318212811}
+  poisonStaff: {fileID: 1742346162}
+  skinnedMeshRenderer: {fileID: 1206926669}
+  changeMeshRenerer: {fileID: 2100000, guid: c8a253bc1d9e7814a87d01583a336bd9, type: 2}
   speed: 2
   runSpeed: 5
   bodyRotateSpeed: 7
@@ -613,6 +617,9 @@ MonoBehaviour:
   - {fileID: 995933057}
   - {fileID: 174266296}
   coinText: {fileID: 60086033}
+  iceUse: 0
+  fireUse: 0
+  poisonUse: 0
 --- !u!143 &81324676
 CharacterController:
   m_ObjectHideFlags: 0
@@ -5381,6 +5388,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199567259}
   m_CullTransparentMesh: 1
+--- !u!137 &1206926669 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 13700000, guid: 8b2d11d64877f0b4cad5d45ec7d53473, type: 3}
+  m_PrefabInstance: {fileID: 41773994}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1239184450
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5872,6 +5884,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2040919133619051578, guid: 7c00126b706a4e94bbdc5f8390ce327b, type: 3}
   m_PrefabInstance: {fileID: 1870718100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1318212811 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3554168429431203066, guid: 7c00126b706a4e94bbdc5f8390ce327b, type: 3}
+  m_PrefabInstance: {fileID: 1870718100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318212805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaed428ae9a2da4d9e595c2f3c4d83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1346161854
 GameObject:
   m_ObjectHideFlags: 0
@@ -7709,6 +7732,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1055627497957157670, guid: 68d75c68bf4153c4ab9a65cbd1058e0b, type: 3}
   m_PrefabInstance: {fileID: 229410784}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1742346162 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8063599474971925696, guid: 68d75c68bf4153c4ab9a65cbd1058e0b, type: 3}
+  m_PrefabInstance: {fileID: 229410784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742346156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1c5918106d0874489244dc3c305778d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1743193297 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4279449019447086, guid: eded051879df4c147b9010199d240258, type: 3}
@@ -8714,6 +8748,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1199567261}
   endingUI: {fileID: 1176515234}
+  spawnMonster: {fileID: 0}
+  heal: 0
   health: 0
   maxHealth: 100
 --- !u!54 &2010894661
