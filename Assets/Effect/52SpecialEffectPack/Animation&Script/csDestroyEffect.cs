@@ -5,10 +5,14 @@ public class csDestroyEffect : MonoBehaviour {
 
     private void Start()
     {
-        StartCoroutine(DestroyIceAge());
+        StartCoroutine(DestroySkill());
     }
 
-    IEnumerator DestroyIceAge()
+    /// <summary>
+    /// 스킬 삭제
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator DestroySkill()
     {
         yield return new WaitForSeconds(3f);
         Destroy(gameObject);

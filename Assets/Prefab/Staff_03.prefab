@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2040919133619051578}
+  - component: {fileID: 3554168429431203066}
   - component: {fileID: 2040919133618248730}
   - component: {fileID: 2040919133617151706}
-  - component: {fileID: 5449780645850674847}
   - component: {fileID: 2968708479862766313}
   - component: {fileID: 8559492639446601723}
   m_Layer: 0
@@ -36,6 +36,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3554168429431203066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2040919133619404826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eaed428ae9a2da4d9e595c2f3c4d83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectDamage: {fileID: 100006, guid: 450dff828997cdd4c864f611df7d62d5, type: 3}
+  isUse: 0
+  coolTimeUi: {fileID: 0}
+  img_Skill: {fileID: 0}
 --- !u!33 &2040919133618248730
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -86,20 +102,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &5449780645850674847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2040919133619404826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b809c37101c5c864491e224e64b6a7f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 1
-  value: 2
 --- !u!54 &2968708479862766313
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -1,9 +1,9 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IceStaff : MonoBehaviour
+public class FireStaff : MonoBehaviour
 {
     public GameObject effectDamage = null;
     Vector3 pos;
@@ -12,9 +12,8 @@ public class IceStaff : MonoBehaviour
     public CoolTimeUI coolTimeUi;
 
     public Image img_Skill;
-
     /// <summary>
-    /// ìŠ¤íƒœí”„ë¥¼ ì‚¬ìš©í•  ë•Œ
+    /// ÇØ´ç ½ºÅÂÇÁ »ç¿ë
     /// </summary>
     private void OnEnable()
     {
@@ -22,9 +21,8 @@ public class IceStaff : MonoBehaviour
         img_Skill.color = new Color(1, 1, 1, 1f);
         isUse = true;
     }
-
     /// <summary>
-    /// ë‹¤ë¥¸ ìŠ¤íƒœí”„ë¡œ êµì²´í•  ë–„
+    /// ÇØ´ç ½ºÅÂÇÁ ²ô°í ´Ù¸¥ ½ºÅÂÇÁ ±³Ã¼
     /// </summary>
     private void OnDisable()
     {
@@ -39,11 +37,11 @@ public class IceStaff : MonoBehaviour
     {
         if (isUse)
         {
-            if (Input.GetKeyDown(KeyCode.R)&&coolTimeUi.iceCoolTime<=1)
+            if (Input.GetKeyDown(KeyCode.R) && coolTimeUi.fireCoolTime <= 1)
             {
                 pos = new Vector3(transform.position.x, 0, transform.position.z);
                 Instantiate(effectDamage, pos, Quaternion.identity);
-                coolTimeUi.IceAge();
+                coolTimeUi.FireAge();
             }
         }
     }

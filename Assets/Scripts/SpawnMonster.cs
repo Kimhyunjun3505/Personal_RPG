@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class SpawnMonster : MonoBehaviour
 {
@@ -14,6 +16,8 @@ public class SpawnMonster : MonoBehaviour
 
     private int n = 1;
 
+    public int round = 1;
+
     float rndPos = 230f;
 
     public bool respawn = true;
@@ -22,10 +26,12 @@ public class SpawnMonster : MonoBehaviour
 
     public float spawnDelay = 2f;
 
+    public Text roundText;
 
     private void Start()
     {
         respawn = true;
+        roundText.text = "Round: " + round;
     }
 
     private void Update()
@@ -41,12 +47,16 @@ public class SpawnMonster : MonoBehaviour
             monstersCount = 0;
             spawnMaxCnt += 2 * n;
             n++;
+            round++;
+            roundText.text = "Round: " + round;
             roundEnd = false;
             respawn = true;
             CancelInvoke("Spawn");
         }
     }
-
+    /// <summary>
+    /// 몬스터 스폰 함수
+    /// </summary>
     public void Spawn()
     {
 

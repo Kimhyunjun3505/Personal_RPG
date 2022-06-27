@@ -61,11 +61,16 @@ public class Player : MonoBehaviour
     public bool useShop;
 
     public Image[] staffImage;
+    public GameObject[] staffImageUI;
+    public GameObject[] staffTextUI;
 
     public Button[] button;
 
     public Text coinText;
 
+    /// <summary>
+    /// 상점 열기
+    /// </summary>
     public void OpenShop()
     {
         coinText.text = string.Format("{0:#,###}", coin);
@@ -74,6 +79,9 @@ public class Player : MonoBehaviour
         shopUI.SetActive(true);
     }
 
+    /// <summary>
+    /// 상점 나가기 버튼
+    /// </summary>
     public void OnClickExit()
     {
         useShop = false;
@@ -82,11 +90,18 @@ public class Player : MonoBehaviour
         failedUI.SetActive(false);
     }
 
+    /// <summary>
+    /// 구매 실패 창 끄기
+    /// </summary>
     public void OnClickFailedExit()
     {
         failedUI.SetActive(false);
     }
 
+    /// <summary>
+    /// 구매 함수
+    /// </summary>
+    /// <param name="index"></param>
     public void Buy(int index)
     {
         int price = itempPrice[index];
@@ -101,6 +116,8 @@ public class Player : MonoBehaviour
             if(hasWeapons[0]==false)
             {
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                staffImageUI[index].SetActive(true);
+                staffTextUI[index].SetActive(true);
                 button[index].enabled = false;
                 button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 hasWeapons[0] = true;
@@ -114,6 +131,8 @@ public class Player : MonoBehaviour
             if (hasWeapons[1] == false)
             {
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                staffImageUI[index].SetActive(true);
+                staffTextUI[index].SetActive(true);
                 button[index].enabled = false;
                 button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 hasWeapons[1] = true;
@@ -127,6 +146,8 @@ public class Player : MonoBehaviour
             if (hasWeapons[2] == false)
             {
                 staffImage[index].color = new Color(0.3f, 0.3f, 0.3f, 1f);
+                staffImageUI[index].SetActive(true);
+                staffTextUI[index].SetActive(true);
                 button[index].enabled = false;
                 button[index].image.color = new Color(0.3f, 0.3f, 0.3f, 1f);
                 hasWeapons[2] = true;
@@ -159,7 +180,9 @@ public class Player : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// 상점 버튼 인식
+    /// </summary>
     void InputShop()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
@@ -171,6 +194,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 각종 버튼 인식
+    /// </summary>
     void GetInput()
     {
         sDown1 = Input.GetButtonDown("Swap1");
@@ -190,22 +216,34 @@ public class Player : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// 점프 공격 키기
+    /// </summary>
     void JumpAtkOn()
     {
         isJumpAttack = true;
     }
 
+    /// <summary>
+    /// 점프 공격 끄기
+    /// </summary>
     void JumpAtkOff()
     {
         isJumpAttack = false;
 
     }
 
+    /// <summary>
+    /// 스왑 끄기
+    /// </summary>
     void SwapOut()
     {
         isSwap = false;
     }
 
+    /// <summary>
+    /// 스태프 교체
+    /// </summary>
     void Swap()
     {
         if (sDown1 && (!hasWeapons[0] || equipWeaponIndex == 0))
@@ -241,14 +279,19 @@ public class Player : MonoBehaviour
 
     }
 
-
+    /// <summary>
+    /// 공격 종료
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator IsAttackFalse()
     {
         yield return new WaitForSeconds(attackClip.length-1.5f);
         isAttack = false;
         characterController.enabled = true;
     }
-
+    /// <summary>
+    /// 공격 시작
+    /// </summary>
     private void AttackAnimationStart()
     {
         isAttack = true;
@@ -261,6 +304,9 @@ public class Player : MonoBehaviour
         attackCoroutine = StartCoroutine(IsAttackFalse());
     }
 
+    /// <summary>
+    /// 움직이고 있다.
+    /// </summary>
     public void IsMoveTrue()
     {
         Lhand.gameObject.SetActive(false);
@@ -268,6 +314,9 @@ public class Player : MonoBehaviour
         isMove = true;
     }
 
+    /// <summary>
+    /// 움직이지 않고 있다
+    /// </summary>
     public void IsMoveFalse()
     {
         Lhand.gameObject.SetActive(true);
@@ -276,7 +325,9 @@ public class Player : MonoBehaviour
         isMove = false;
     }
 
-
+    /// <summary>
+    /// 애니메이션 업데이트
+    /// </summary>
     private void AnimationUpdate()
     {
         if (isWalk)
@@ -291,12 +342,19 @@ public class Player : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 플레이어 회전
+    /// </summary>
+    /// <param name="dir"></param>
     private void BodyRotate(Vector3 dir)
     {
         if (dir != Vector3.zero)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), bodyRotateSpeed * Time.deltaTime);
     }
 
+    /// <summary>
+    /// ongui 출력
+    /// </summary>
     private void OnGUI()
     {
         if (characterController != null)
@@ -312,6 +370,9 @@ public class Player : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 플레이어 움직임 
+    /// </summary>
     void Move()
     {
         isRun = false;
@@ -348,6 +409,10 @@ public class Player : MonoBehaviour
             BodyRotate(amount);
     }
 
+    /// <summary>
+    /// 가속도 체크
+    /// </summary>
+    /// <returns></returns>
     float GetVelocitySpd()
     {
         if (characterController.velocity == Vector3.zero)

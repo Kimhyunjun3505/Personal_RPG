@@ -1,9 +1,9 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IceStaff : MonoBehaviour
+public class PoisonStaff : MonoBehaviour
 {
     public GameObject effectDamage = null;
     Vector3 pos;
@@ -14,7 +14,7 @@ public class IceStaff : MonoBehaviour
     public Image img_Skill;
 
     /// <summary>
-    /// ìŠ¤íƒœí”„ë¥¼ ì‚¬ìš©í•  ë•Œ
+    /// ÇØ´ç ½ºÅÂÇÁ »ç¿ëÁß
     /// </summary>
     private void OnEnable()
     {
@@ -22,13 +22,12 @@ public class IceStaff : MonoBehaviour
         img_Skill.color = new Color(1, 1, 1, 1f);
         isUse = true;
     }
-
     /// <summary>
-    /// ë‹¤ë¥¸ ìŠ¤íƒœí”„ë¡œ êµì²´í•  ë–„
+    /// ÇØ´ç ½ºÅÂÇÁ ²ô°í ´Ù¸¥ ½ºÅÂÇÁ·Î ±³Ã¼
     /// </summary>
     private void OnDisable()
     {
-        if (img_Skill != null)
+        if(img_Skill!=null)
         {
             img_Skill.color = new Color(1, 1, 1, 0f);
         }
@@ -39,11 +38,11 @@ public class IceStaff : MonoBehaviour
     {
         if (isUse)
         {
-            if (Input.GetKeyDown(KeyCode.R)&&coolTimeUi.iceCoolTime<=1)
+            if (Input.GetKeyDown(KeyCode.R) && coolTimeUi.poisonCoolTime <= 1)
             {
                 pos = new Vector3(transform.position.x, 0, transform.position.z);
                 Instantiate(effectDamage, pos, Quaternion.identity);
-                coolTimeUi.IceAge();
+                coolTimeUi.PoisonAge();
             }
         }
     }

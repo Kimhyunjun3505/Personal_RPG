@@ -11,6 +11,8 @@ TagManager:
   - IceAge
   - Target
   - Coin
+  - FireAge
+  - PoisonAge
   layers:
   - Default
   - TransparentFX

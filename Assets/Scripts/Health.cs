@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     public Image healthBar;
+    public GameObject endingUI;
 
     public float health, maxHealth = 100;
     // Start is called before the first frame update
@@ -20,8 +21,8 @@ public class Health : MonoBehaviour
         if (health > maxHealth) 
             health = maxHealth;
 
-        if(health<=0)
-            SceneManager.LoadScene("GameOver");
+        if (health <= 0)
+            endingUI.SetActive(true);
 
         HealthBarFiller();
     }
@@ -31,15 +32,4 @@ public class Health : MonoBehaviour
         healthBar.fillAmount = health / maxHealth;
     }
 
-    //public void Heal(float healingPoints)
-    //{
-    //    if (health < maxHealth)
-    //        health += healingPoints;
-    //}
-
-    //public void Damage(float damagePoints)
-    //{
-    //    if (health > 0)
-    //        health -= damagePoints;
-    //}
 }

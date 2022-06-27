@@ -12,6 +12,8 @@ public class SpiderCtrl : MonoBehaviour
     public bool isChase;
     public bool isDie = false;
     public bool isIce = false;
+    public bool isFire = false;
+    public bool isPoison = false;
     public bool isAtk = false;
     public GameObject effectDamage = null;
     public GameObject damagedEffect = null;
@@ -36,10 +38,13 @@ public class SpiderCtrl : MonoBehaviour
         mat = GetComponentInChildren<SkinnedMeshRenderer>().material;
         nav = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-
+        //Debug.Log(nav.speed);
         Invoke("ChaseStart", 1);
     }
 
+    /// <summary>
+    /// 적한테 가기
+    /// </summary>
     private void ChaseStart()
     {
         isChase = true;
@@ -48,6 +53,10 @@ public class SpiderCtrl : MonoBehaviour
 
     private void Update()
     {
+        if(isPoison)
+            nav.speed = 2f;
+        else
+            nav.speed = 3.5f;
         if (isChase && !isIce && transform.position.y <= 1 && !isDie)
         {
             nav.SetDestination(target.position);
@@ -55,6 +64,9 @@ public class SpiderCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 가속도 0
+    /// </summary>
     private void FreezeVelocity()
     {
         if (isChase)
@@ -74,19 +86,27 @@ public class SpiderCtrl : MonoBehaviour
         FreezeVelocity();
     }
 
+    /// <summary>
+    /// 공격 시작 함수
+    /// </summary>
     public void SetTrueAtk()
     {
         Instantiate(effectDamage, col.transform.position, Quaternion.identity);
         col.gameObject.SetActive(false);
         target.GetComponent<Health>().health -= 1;
     }
-
+    /// <summary>
+    /// 공격 종료
+    /// </summary>
     public void SetFalseAtk()
     {
         animator.SetBool("IsAttack", false);
         StartCoroutine(colActive());
     }
-
+    /// <summary>
+    /// 공격 콜라이더 키기
+    /// </summary>
+    /// <returns></returns>
     IEnumerator colActive()
     {
         yield return new WaitForSeconds(0.2f);
@@ -95,6 +115,15 @@ public class SpiderCtrl : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+
+        if(other.tag == "PoisonAge")
+        {
+            isPoison = true;
+            curHealth -= 5f;
+            Vector3 reactVec = transform.position - other.transform.position;
+            StartCoroutine(OnDamage(reactVec));
+        }
+
         if (col.gameObject.activeSelf == true)
         {
             if (other.tag == "Target")
@@ -114,13 +143,26 @@ public class SpiderCtrl : MonoBehaviour
             Vector3 reactVec = transform.position - other.transform.position;
             StartCoroutine(OnDamage(reactVec));
         }
-        if(other.CompareTag("IceAge"))
+        if (other.tag == "FireAge")
+        {
+            isChase = false;
+            curHealth -= 100;
+            isFire = true;
+            Vector3 reactVec = transform.position - other.transform.position;
+            StartCoroutine(OnDamage(reactVec));
+        }
+        if (other.CompareTag("IceAge"))
         {
             mat.color = Color.blue;
             StartCoroutine(OnIce());
         }
     }
 
+    /// <summary>
+    /// 데미지를 받았을때 실행하는 함수
+    /// </summary>
+    /// <param name="reactVec"></param>
+    /// <returns></returns>
     IEnumerator OnDamage(Vector3 reactVec)
     {
         if(isIce)
@@ -128,16 +170,26 @@ public class SpiderCtrl : MonoBehaviour
             nav.enabled = true;
             isIce = false;
         }
+
         isChase = false;
         mat.color = Color.red;
         reactVec = reactVec.normalized;
         rb.freezeRotation = false;
         yield return new WaitForSeconds(0.1f);
-        Instantiate(damagedEffect, transform.position, Quaternion.identity);
-        rb.AddForce(reactVec * 1000, ForceMode.Force);
+        if(!isFire&&!isPoison)
+        {
+            Instantiate(damagedEffect, transform.position, Quaternion.identity);
+            rb.AddForce(reactVec * 1000, ForceMode.Force);
+        }
         yield return new WaitForSeconds(0.5f);
+
+
         if (!isIce)
             isChase = true;
+
+        if (isFire)
+            isFire = false;
+
         if (curHealth>0)
         {
             if (!isIce)
@@ -156,6 +208,10 @@ public class SpiderCtrl : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 동상 함수
+    /// </summary>
+    /// <returns></returns>
     IEnumerator OnIce()
     {
         mat.color = Color.blue;
