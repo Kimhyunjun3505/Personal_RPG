@@ -40,7 +40,7 @@ public class SpawnMonster : MonoBehaviour
         {
             respawn = false;
             //나중에 20초로
-            InvokeRepeating("Spawn", 5, spawnDelay);
+            InvokeRepeating("Spawn", 15, spawnDelay);
         }
         else if(roundEnd)
         {
